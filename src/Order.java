@@ -1,2 +1,50 @@
-public class Order {
+import java.util.Arrays;
+import java.util.Objects;
+
+class Order {
+    String customer;
+    Product[] basket;
+
+    Order(String customer, Product[] basket) {
+        this.customer = customer;
+        this.basket = basket;
+    }
+
+    @Override
+    public String toString() {
+        return "Заказ[клиент=" + customer + ", корзина=" + Arrays.toString(basket) + "]";
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+
+        if (obj == null || getClass() != obj.getClass()) return false;
+
+        Order order = (Order) obj;
+
+        if (!Objects.equals(customer, order.customer)) return false;
+
+        Product[] myBasket = this.basket;
+        Product[] otherBasket = order.basket;
+
+        if (myBasket == null && otherBasket == null) return true;
+
+        if (myBasket == null || otherBasket == null) return false;
+
+        if (myBasket.length != otherBasket.length) return false;
+
+        for (int i = 0; i < myBasket.length; i++) {
+            Product product1 = myBasket[i];
+            Product product2 = otherBasket[i];
+
+            if (product1 == null && product2 == null) continue;
+
+            if (product1 == null || product2 == null) return false;
+
+            if (!product1.equals(product2)) return false;
+        }
+
+        return true;
+    }
 }
