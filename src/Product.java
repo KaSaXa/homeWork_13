@@ -1,12 +1,12 @@
 import java.util.Objects;
 
-class Product {
-    int id;
-    String name;
-    int price;
-    String category;
+public class Product {
+    private int id;
+    private String name;
+    private int price;
+    private String category;
 
-    Product(int id, String name, int price, String category) {
+    public Product(int id, String name, int price, String category) {
         this.id = id;
         this.name = name;
         this.price = price;
@@ -31,5 +31,10 @@ class Product {
 
         return id == product.id &&
                 Objects.equals(category, product.category);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, category);
     }
 }

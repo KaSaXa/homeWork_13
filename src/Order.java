@@ -1,11 +1,11 @@
 import java.util.Arrays;
 import java.util.Objects;
 
-class Order {
-    String customer;
-    Product[] basket;
+public class Order {
+    private String customer;
+    private Product[] basket;
 
-    Order(String customer, Product[] basket) {
+   public Order(String customer, Product[] basket) {
         this.customer = customer;
         this.basket = basket;
     }
@@ -47,4 +47,11 @@ class Order {
 
         return true;
     }
-}
+        @Override
+        public int hashCode () {
+            int result = Objects.hash(customer);
+            result = 31 * result + Arrays.hashCode(basket);
+            return result;
+        }
+    }
+
